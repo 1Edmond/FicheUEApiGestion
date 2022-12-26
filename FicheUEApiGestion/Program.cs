@@ -1,5 +1,6 @@
 using FicheUEApiGestion.Customs;
 using FicheUEApiGestion.MyContext;
+using FicheUEApiGestion.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddTransient<IFicheUEService, FicheUEService>();
 
 builder.Services.AddDbContext<FicheUEApiGestionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FicheUEApiGestionContext") ?? throw new InvalidOperationException("Connection string FicheUEApiGestionContext not found"))
