@@ -19,7 +19,7 @@ public class FicheUEApiGestionController : ControllerBase
     #region Enseignant
     [HttpPost]
     [Route("Enseigants/Add")]
-    public IActionResult AddEnseingant([FromForm] Enseignant enseignant)
+    public IActionResult AddEnseingant([FromBody] Enseignant enseignant)
     {
         if (enseignant is null)
             return BadRequest();
@@ -53,7 +53,7 @@ public class FicheUEApiGestionController : ControllerBase
     
     [HttpPut]
     [Route("Enseigants/Update")]
-    public IActionResult UpdateEnseignant([FromForm] Enseignant enseignant)
+    public IActionResult UpdateEnseignant([FromBody] Enseignant enseignant)
     {
         if (!_context.Enseignants.Any(x => x.Id.Equals(enseignant.Id)))
             return BadRequest("L'enseingant existe déjà");
@@ -101,7 +101,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("Competences/Add")]
-    public IActionResult AddCompetence([FromForm] Competence competence)
+    public IActionResult AddCompetence([FromBody] Competence competence)
     {
         if (_context.Competences.Any(x => x.Libelle.Equals(competence.Libelle)))
             return BadRequest("La competence existe déjà");
@@ -129,7 +129,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("Competences/Update")]
-    public IActionResult UpdateCompetence([FromForm] Competence competence)
+    public IActionResult UpdateCompetence([FromBody] Competence competence)
     {
         if (!_context.Competences.Any(x => x.Id.Equals(competence.Id)))
             return BadRequest("La compétence existe déjà");
@@ -167,7 +167,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("Capacites/Add")]
-    public IActionResult AddCapacite([FromForm] Capacite capacite)
+    public IActionResult AddCapacite([FromBody] Capacite capacite)
     {
         if (_context.Capacites.Any(x => x.Libelle.Equals(capacite.Libelle)))
             return BadRequest("La capactiée existe déjà");
@@ -195,10 +195,10 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("Capacites/Update")]
-    public IActionResult UpdateCapacite([FromForm] Capacite capacite)
+    public IActionResult UpdateCapacite([FromBody] Capacite capacite)
     {
         if (!_context.Capacites.Any(x => x.Id.Equals(capacite.Id)))
-            return BadRequest("La capacitée existe déjà");
+            return BadRequest("La capacité existe déjà");
         if (capacite is null)
             return BadRequest();
         _context.Update(capacite);
@@ -231,7 +231,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("ModeEvaluation/Add")]
-    public IActionResult AddModeEvaluation([FromForm] ModeEvaluation modeEvaluation)
+    public IActionResult AddModeEvaluation([FromBody] ModeEvaluation modeEvaluation)
     {
         if (_context.ModeEvaluations.Any(x => x.Type.Equals(modeEvaluation.Type)))
             return BadRequest("Le Mode d'évaluation existe déjà");
@@ -259,7 +259,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("ModeEvaluation/Update")]
-    public IActionResult UpdateModeEvaluations([FromForm] ModeEvaluation modeEvaluation)
+    public IActionResult UpdateModeEvaluations([FromBody] ModeEvaluation modeEvaluation)
     {
         if (!_context.ModeEvaluations.Any(x => x.Id.Equals(modeEvaluation.Id)))
             return BadRequest("Le mode d'évaluation existe déjà");
@@ -296,7 +296,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("Cursus/Add")]
-    public IActionResult AddCursus([FromForm] Cursus cursus)
+    public IActionResult AddCursus([FromBody] Cursus cursus)
     {
         if (_context.Cursus.Any(x => x.Implantation.Equals(cursus.Implantation) && x.Libelle.Equals(cursus.Libelle)))
             return BadRequest("Le cursus existe déjà");
@@ -324,7 +324,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("Cursus/Update")]
-    public IActionResult UpdateCursus([FromForm] Cursus cursus)
+    public IActionResult UpdateCursus([FromBody] Cursus cursus)
     {
         if (!_context.Cursus.Any(x => x.Id.Equals(cursus.Id)))
             return BadRequest("Le cursus existe déjà");
@@ -361,7 +361,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("Cours/Add")]
-    public IActionResult AddCours([FromForm] Cours cours)
+    public IActionResult AddCours([FromBody] Cours cours)
     {
         if (_context.Cours.Any(x => x.Libelle.Equals(cours.Libelle)))
             return BadRequest("Le cours existe déjà");
@@ -389,7 +389,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("Cours/Update")]
-    public IActionResult UpdateCours([FromForm] Cours cours)
+    public IActionResult UpdateCours([FromBody] Cours cours)
     {
         if (!_context.Cours.Any(x => x.Id.Equals(cours.Id)))
             return BadRequest("Le cours existe déjà");
@@ -426,7 +426,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPost]
     [Route("Libres/Add")]
-    public IActionResult AddLibre([FromForm] Libre libre)
+    public IActionResult AddLibre([FromBody] Libre libre)
     {
         if (_context.Libres.Any(x => x.Valeur.Equals(libre.Valeur) && x.Type.Equals(libre.Type)))
             return BadRequest("Le champ là existe déjà");
@@ -454,7 +454,7 @@ public class FicheUEApiGestionController : ControllerBase
 
     [HttpPut]
     [Route("Libres/Update")]
-    public IActionResult UpdateLibres([FromForm] Libre libre)
+    public IActionResult UpdateLibres([FromBody] Libre libre)
     {
         if (!_context.Libres.Any(x => x.Id.Equals(libre.Id)))
             return BadRequest("Le cours existe déjà");
@@ -465,7 +465,70 @@ public class FicheUEApiGestionController : ControllerBase
         return Ok();
     }
 
-    #endregion
+	#endregion
+
+	#region UE
+	[HttpGet]
+	[Route("UEs")]
+	public IActionResult GetUE()
+	{
+		return Ok(_context.UEs.ToList());
+	}
+
+
+	[HttpGet]
+	[Route("UEs/{Code}")]
+	public IActionResult GetUEs(string code)
+	{
+		if (!_context.UEs.Any(x => x.CodeUE.Equals(code)))
+			return BadRequest();
+		var temp = _context.UEs.Find(code);
+		if (temp is null)
+			return BadRequest();
+		return Ok(temp);
+	}
+
+	[HttpPost]
+	[Route("UEs/Add")]
+	public IActionResult AddUE([FromBody] UE ue)
+	{
+		if (_context.UEs.Any(x => x.NomUE.Equals(ue.NomUE)))
+			return BadRequest("Le cours existe déjà");
+		if (ue is null)
+			return BadRequest();
+		_context.Add(ue);
+		_context.SaveChanges();
+		return Ok();
+	}
+
+
+	[HttpDelete]
+	[Route("UEs/Delete/{Code}")]
+	public IActionResult DeleteUE(string code)
+	{
+		if (!_context.UEs.Any(x => x.CodeUE.Equals(code)))
+			return BadRequest();
+		var temp = _context.UEs.Find(code);
+		if (temp is null)
+			return BadRequest();
+		_context.UEs.Remove(temp);
+		_context.SaveChanges();
+		return NoContent();
+	}
+
+	[HttpPut]
+	[Route("UEs/Update")]
+	public IActionResult UpdateCours([FromBody] UE ue)
+	{
+		if (!_context.UEs.Any(x => x.CodeUE.Equals(ue.CodeUE)))
+			return BadRequest("Le cours existe déjà");
+		if (ue is null)
+			return BadRequest();
+		_context.Update(ue);
+		_context.SaveChanges();
+		return Ok();
+	}
+	#endregion
 
 
 

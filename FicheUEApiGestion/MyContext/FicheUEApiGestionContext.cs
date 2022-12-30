@@ -10,8 +10,30 @@ public class FicheUEApiGestionContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        this.AddDefaultDataToDatabase();
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Langue>().HasData
+        (
+            new Langue
+            {
+				Id = 1,
+                Libelle = "Français"
+            },
+			new Langue
+			{
+				Id = 2,
+				Libelle = "Anglais"
+			},
+			new Langue
+			{
+				Id = 3,
+				Libelle = "Espagnol"
+			},
+			new Langue
+			{
+				Id = 4,
+				Libelle = "Néerlandais"
+			}
+		) ;
     }
 
    public DbSet<Langue> Langues { get; set; } = default!;
